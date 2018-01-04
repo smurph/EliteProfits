@@ -52,7 +52,7 @@
             }
 
             _journalInfo = lines;
-            _lastJournalInfoTime = GetLastFileWriteTimeUtc();
+            _lastJournalInfoTime = file.LastWriteTimeUtc;
             return lines;
         }
     }
