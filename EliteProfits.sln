@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfitForms", "ProfitForms\ProfitForms.csproj", "{A37EDC4A-7808-421E-8AF9-5D639276D91D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EliteProfits", "EliteProfits\EliteProfits.csproj", "{B85270D8-8A3B-4C41-A953-33D55B64EE63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A37EDC4A-7808-421E-8AF9-5D639276D91D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A37EDC4A-7808-421E-8AF9-5D639276D91D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A37EDC4A-7808-421E-8AF9-5D639276D91D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A37EDC4A-7808-421E-8AF9-5D639276D91D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B85270D8-8A3B-4C41-A953-33D55B64EE63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B85270D8-8A3B-4C41-A953-33D55B64EE63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B85270D8-8A3B-4C41-A953-33D55B64EE63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B85270D8-8A3B-4C41-A953-33D55B64EE63}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
