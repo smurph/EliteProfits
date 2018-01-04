@@ -6,17 +6,18 @@ namespace EliteProfits
     public class TradeData
     {
         private IJournalReader _reader;
-        private CachedJournalInfoReader _cachedJournalInfo;
 
         public TradeData(IJournalReader reader)
         {
             _reader = reader;
-            _cachedJournalInfo = new CachedJournalInfoReader(reader);
         }
         
         public List<Dictionary<string, string>> MostRecentTradeInfo()
         {
-            return _cachedJournalInfo.GetJournalInfo(line => line.ContainsKey("event") && ((string)line["event"] == "MarketBuy" || (string)line["event"] == "MarketSell"));
+            return _reader.MostRecentJournalInfo()
+                .Where(line => 
+                    line.ContainsKey("event") && ((string)line["event"] == "MarketBuy" || (string)line["event"] == "MarketSell")
+                ).ToList();
         }
 
         public int TotalTradeSellValue()

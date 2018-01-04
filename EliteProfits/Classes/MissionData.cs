@@ -7,17 +7,18 @@
     public class MissionData
     {
         private IJournalReader _reader;
-        private CachedJournalInfoReader _cachedJournalInfo;
 
         public MissionData(IJournalReader reader)
         {
             _reader = reader;
-            _cachedJournalInfo = new CachedJournalInfoReader(reader);
         }
 
         public List<Dictionary<string, string>> MostRecentMissionInfo()
         {
-            return _cachedJournalInfo.GetJournalInfo(line => line.ContainsKey("event") && line.ContainsKey("Reward") && ((string)line["event"] == "MissionCompleted" || (string)line["event"] == "MissionAccepted" || (string)line["event"] == "MissionFailed"));
+            return _reader.MostRecentJournalInfo()
+                .Where(line => 
+                    line.ContainsKey("event") && line.ContainsKey("Reward") && ((string)line["event"] == "MissionCompleted" || (string)line["event"] == "MissionAccepted" || (string)line["event"] == "MissionFailed")
+                ).ToList();
         }
 
         public long TotalMissionIncome()

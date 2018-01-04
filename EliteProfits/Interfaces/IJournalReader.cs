@@ -10,6 +10,6 @@
 
         DateTime GetLastFileWriteTimeUtc();
 
-        List<Dictionary<string, string>> MostRecentJournalInfo(Func<Dictionary<string, object>, bool> conditions);
+        List<Dictionary<string, string>> MostRecentJournalInfo();
     }
 }

@@ -12,6 +12,9 @@
         {
             _filePath = filePath;
         }
+
+        private List<Dictionary<string, string>> _journalInfo = null;
+        private DateTime _lastJournalInfoTime = DateTime.MinValue;
         
         private string _filePath = string.Empty;
 
@@ -25,8 +28,13 @@
             return GetMostRecentFile().LastWriteTimeUtc;
         }
 
-        public List<Dictionary<string, string>> MostRecentJournalInfo(Func<Dictionary<string, object>, bool> conditions)
+        public List<Dictionary<string, string>> MostRecentJournalInfo()
         {
+            if (_journalInfo != null && GetLastFileWriteTimeUtc() <= _lastJournalInfoTime)
+            {
+                return _journalInfo;
+            }
+
             var lines = new List<Dictionary<string, string>>();
             var file = GetMostRecentFile();
 
@@ -37,15 +45,14 @@
                     while (!reader.EndOfStream)
                     {
                         var line = JsonConvert.DeserializeObject<Dictionary<string, object>>(reader.ReadLine());
-
-                        if (conditions == null || conditions(line))
-                        {
-                            lines.Add(line.ToDictionary(s => s.Key, y => y.Value.ToString()));
-                        }
+                        
+                        lines.Add(line.ToDictionary(s => s.Key, y => y.Value.ToString()));
                     }
                 }
             }
 
+            _journalInfo = lines;
+            _lastJournalInfoTime = GetLastFileWriteTimeUtc();
             return lines;
         }
     }

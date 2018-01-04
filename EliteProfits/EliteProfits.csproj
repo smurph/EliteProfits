@@ -50,7 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\CachedJournalInfoReader.cs" />
     <Compile Include="Classes\MissionData.cs" />
     <Compile Include="Classes\TradeData.cs" />
     <Compile Include="Interfaces\IJournalReader.cs" />
