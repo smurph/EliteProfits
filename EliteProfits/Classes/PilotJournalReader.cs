@@ -10,17 +10,17 @@
     {
         public PilotJournalReader(string filePath)
         {
-            _filePath = filePath;
+            FilePath = filePath;
         }
 
         private List<Dictionary<string, string>> _journalInfo = null;
         private DateTime _lastJournalInfoTime = DateTime.MinValue;
         
-        private string _filePath = string.Empty;
+        public string FilePath { get; set; }
 
         public FileInfo GetMostRecentFile()
         {
-            return (new DirectoryInfo(_filePath)).GetFiles().OrderByDescending(f => f.LastWriteTime).FirstOrDefault();
+            return (new DirectoryInfo(FilePath)).GetFiles().OrderByDescending(f => f.LastWriteTime).Where(f => f.Name.EndsWith(".log")).FirstOrDefault();
         }
 
         public DateTime GetLastFileWriteTimeUtc()

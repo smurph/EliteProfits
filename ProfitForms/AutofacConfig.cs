@@ -7,16 +7,16 @@
 
     public static class AutofacConfig
     {
-        public static IContainer Configure()
+        public static IContainer BuildContainer()
         {
             var builder = new ContainerBuilder();
-            
-            builder.RegisterInstance(
-                    new PilotJournalReader(ConfigurationManager.AppSettings["EliteDangerousJournalPath"])
-                ).As<IJournalReader>().SingleInstance();
 
-            builder.Register(c => new TradeData(c.Resolve<IJournalReader>()));
-            builder.Register(c => new MissionData(c.Resolve<IJournalReader>()));
+            var reader = new PilotJournalReader(ConfigurationManager.AppSettings["EliteDangerousJournalPath"]);
+
+            builder.RegisterInstance(reader).SingleInstance();
+
+            builder.Register(c => new TradeData(reader));
+            builder.Register(c => new MissionData(reader));
             return builder.Build();
         }
     }

@@ -28,18 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label3 = new System.Windows.Forms.Label();
             this.lblCreditsPerHour = new System.Windows.Forms.Label();
             this.lblProfit = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lblMissionCreditsEarned = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblLastUpdated = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.lblMissionCreditsEarned = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -74,11 +72,6 @@
             this.lblProfit.Size = new System.Drawing.Size(59, 33);
             this.lblProfit.TabIndex = 5;
             this.lblProfit.Text = "0 Cr";
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 10000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // tabControl1
             // 
@@ -115,6 +108,16 @@
             this.tabPage2.Text = "Missions";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // lblMissionCreditsEarned
+            // 
+            this.lblMissionCreditsEarned.AutoSize = true;
+            this.lblMissionCreditsEarned.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMissionCreditsEarned.Location = new System.Drawing.Point(117, 3);
+            this.lblMissionCreditsEarned.Name = "lblMissionCreditsEarned";
+            this.lblMissionCreditsEarned.Size = new System.Drawing.Size(59, 33);
+            this.lblMissionCreditsEarned.TabIndex = 4;
+            this.lblMissionCreditsEarned.Text = "0 Cr";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -145,16 +148,6 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Last Updated:";
             // 
-            // lblMissionCreditsEarned
-            // 
-            this.lblMissionCreditsEarned.AutoSize = true;
-            this.lblMissionCreditsEarned.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMissionCreditsEarned.Location = new System.Drawing.Point(117, 3);
-            this.lblMissionCreditsEarned.Name = "lblMissionCreditsEarned";
-            this.lblMissionCreditsEarned.Size = new System.Drawing.Size(59, 33);
-            this.lblMissionCreditsEarned.TabIndex = 4;
-            this.lblMissionCreditsEarned.Text = "0 Cr";
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -166,7 +159,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmMain";
             this.Text = "Elite Profits";
-            this.Load += new System.EventHandler(this.frmMain_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -179,16 +171,15 @@
 
         #endregion
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblCreditsPerHour;
-        private System.Windows.Forms.Label lblProfit;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Label lblMissionCreditsEarned;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblLastUpdated;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblCreditsPerHour;
+        private System.Windows.Forms.Label lblProfit;
+        private System.Windows.Forms.Label lblMissionCreditsEarned;
+        private System.Windows.Forms.Label lblLastUpdated;
+        private System.Windows.Forms.TabControl tabControl1;
     }
 }
 

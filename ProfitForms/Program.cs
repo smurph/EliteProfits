@@ -1,13 +1,10 @@
-﻿using EliteProfits;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace ProfitForms
+﻿namespace ProfitForms
 {
+    using EliteProfits;
+    using System;
+    using System.Configuration;
+    using System.Windows.Forms;
+
     static class Program
     {
         /// <summary>
@@ -19,7 +16,8 @@ namespace ProfitForms
             var _reader = new PilotJournalReader(ConfigurationManager.AppSettings["EliteDangerousJournalPath"]);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain(AutofacConfig.Configure()));
+
+            Application.Run(new frmMain(AutofacConfig.BuildContainer()));
         }
     }
 }

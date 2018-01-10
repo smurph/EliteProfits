@@ -11,5 +11,6 @@
         DateTime GetLastFileWriteTimeUtc();
 
         List<Dictionary<string, string>> MostRecentJournalInfo();
+
     }
 }

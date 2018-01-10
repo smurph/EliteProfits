@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-namespace EliteProfits
+﻿namespace EliteProfits
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class TradeData
     {
         private IJournalReader _reader;
@@ -16,7 +17,7 @@ namespace EliteProfits
         {
             return _reader.MostRecentJournalInfo()
                 .Where(line => 
-                    line.ContainsKey("event") && ((string)line["event"] == "MarketBuy" || (string)line["event"] == "MarketSell")
+                    line.ContainsKey("event") && (line["event"] == "MarketBuy" || line["event"] == "MarketSell")
                 ).ToList();
         }
 

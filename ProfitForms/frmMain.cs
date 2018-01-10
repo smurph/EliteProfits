@@ -1,13 +1,14 @@
-﻿using Autofac;
-using EliteProfits;
-using System;
-using System.Windows.Forms;
-
-namespace ProfitForms
+﻿namespace ProfitForms
 {
+    using Autofac;
+    using EliteProfits;
+    using System;
+    using System.IO;
+    using System.Windows.Forms;
+
     public partial class frmMain : Form
     {
-        private IJournalReader _reader;
+        private PilotJournalReader _reader;
         private TradeData _marketData;
         private MissionData _missionData;
 
@@ -16,24 +17,51 @@ namespace ProfitForms
             InitializeComponent();
             _marketData = container.Resolve<TradeData>();
             _missionData = container.Resolve<MissionData>();
-            _reader = container.Resolve<IJournalReader>();
+            _reader = container.Resolve<PilotJournalReader>();
+
+            SetupFileSystemWatch();
+
+            UpdateLabels(null, null);
         }
 
-        private void frmMain_Load(object sender, EventArgs e)
-        {            
-            // Start immediately
-            timer1_Tick(null, null);
-            timer1.Start();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
+        private void SetupFileSystemWatch()
         {
-            lblLastUpdated.Text = $"{_reader.GetLastFileWriteTimeUtc().ToLocalTime()}";
+            var watcher = new FileSystemWatcher()
+            {
+                Path = _reader.FilePath,
+                NotifyFilter = NotifyFilters.LastWrite,
+                Filter = "Journal*.log",
+                EnableRaisingEvents = true
+            };
 
-            lblProfit.Text = $"{_marketData.TotalProfits():n0} Cr";
-            lblCreditsPerHour.Text = $"{_marketData.TradeCreditsPerHour():n0} Cr/hr";
+            watcher.Changed += new FileSystemEventHandler(UpdateLabels);
+        }
 
-            lblMissionCreditsEarned.Text = $"{_missionData.TotalMissionIncome():n0} Cr";
+        private delegate void SetTextDelegate(Label label, string text);
+
+        private void SetLabelText_ThreadSafe(Label label, string text)
+        {
+            if (label.InvokeRequired)
+            {
+                var d = new SetTextDelegate(SetLabelText_ThreadSafe);
+                Invoke(d, new object[] { label, text });
+            }
+            else
+            {
+                label.Text = text;
+            }
+        }
+
+        private void UpdateLabels(object sender, EventArgs e)
+        {
+            SetLabelText_ThreadSafe(lblLastUpdated, _reader.GetLastFileWriteTimeUtc().ToLocalTime().ToString());
+
+            SetLabelText_ThreadSafe(lblProfit, $"{_marketData.TotalProfits():n0} Cr");
+
+            SetLabelText_ThreadSafe(lblCreditsPerHour, $"{_marketData.TradeCreditsPerHour():n0} Cr/hr");
+
+            SetLabelText_ThreadSafe(lblMissionCreditsEarned, $"{_missionData.TotalMissionIncome():n0} Cr");
         }
     }
+
 }
